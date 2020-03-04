@@ -8,22 +8,42 @@ with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
 
+def codesCalledFromBangalore(calls):
+  codes = set()
+  for call in calls:
+    if("(080)" in call[0]):
+      if(isMobile(call[1])):
+        codes.add(getMobileCode(call[1]))
+      elif():
+        codes.add(getFixedCode(call[1]))
+
+  #  The list of codes should be printed out one per line in lexicographic order with no duplicates.
+  return sorted(list(codes))
+   
+
+def isMobile(number):
+  return " " in number
+
+def getMobileCode(number):
+  return number[:4]
+
+def getFixedCode(number):
+  num = number.split(")")
+  return num[1:]
+
+def printCodes(codes):
+  print("The numbers called by people in Bangalore have codes:")
+  for code in codes:
+    print(code)
+
+# Part A:
+codes_list = codesCalledFromBangalore(calls)
+printCodes(codes_list)
+
+
+# Part B:
+
 """
-TASK 3:
-(080) is the area code for fixed line telephones in Bangalore.
-Fixed line numbers include parentheses, so Bangalore numbers
-have the form (080)xxxxxxx.)
-
-Part A: Find all of the area codes and mobile prefixes called by people
-in Bangalore.
- - Fixed lines start with an area code enclosed in brackets. The area
-   codes vary in length but always begin with 0.
- - Mobile numbers have no parentheses, but have a space in the middle
-   of the number to help readability. The prefix of a mobile number
-   is its first four digits, and they always start with 7, 8 or 9.
- - Telemarketers' numbers have no parentheses or space, but they start
-   with the area code 140.
-
 Print the answer as part of a message:
 "The numbers called by people in Bangalore have codes:"
  <list of codes>
