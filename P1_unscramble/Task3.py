@@ -1,5 +1,6 @@
 import csv
 
+# Read from files
 with open('texts.csv', 'r') as f:
     reader = csv.reader(f)
     texts = list(reader)
@@ -8,16 +9,17 @@ with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
 
-def codesCalledFromBangalore(calls):
+# Returns a list of area codes that were called from a given area code
+# In lexicographic order with no duplicates
+def codesCalledFromCode(calls, code):
   codes = set()
   for call in calls:
-    if("(080)" in call[0]):
+    if(code in call[0]):
       if(isMobile(call[1])):
         codes.add(getMobileCode(call[1]))
       elif():
         codes.add(getFixedCode(call[1]))
 
-  #  The list of codes should be printed out one per line in lexicographic order with no duplicates.
   return sorted(list(codes))
    
 
@@ -31,31 +33,46 @@ def getFixedCode(number):
   num = number.split(")")
   return num[1:]
 
+# Print area codes one per line
 def printCodes(codes):
   print("The numbers called by people in Bangalore have codes:")
   for code in codes:
     print(code)
 
+
 # Part A:
-codes_list = codesCalledFromBangalore(calls)
+codes_list = codesCalledFromCode(calls, "(080)")
 printCodes(codes_list)
+
+########################################
+
+def callsFromAreaCode(calls, code):
+  calls_from_area = []
+  for call in calls:
+    if(code in call[0]):
+      calls_from_area.append(call)
+  return calls_from_area
+
+def callsToAreaCode(calls, code):
+  calls_to_area = []
+  for call in calls:
+    if(code in call[1]):
+      calls_to_area.append(call)
+  return calls_to_area
+
+# Calculates percentage with decimal digits
+def calculatePercentage(total, fraction):
+  percentage = (fraction / total) * 100
+  return round(percentage, 2)
+
+
+def printPercentage(percentage):
+  answer = "{} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.".format(percentage)
+  print(answer)
 
 
 # Part B:
-
-"""
-Print the answer as part of a message:
-"The numbers called by people in Bangalore have codes:"
- <list of codes>
-The list of codes should be print out one per line in lexicographic order with no duplicates.
-
-Part B: What percentage of calls from fixed lines in Bangalore are made
-to fixed lines also in Bangalore? In other words, of all the calls made
-from a number starting with "(080)", what percentage of these calls
-were made to a number also starting with "(080)"?
-
-Print the answer as a part of a message::
-"<percentage> percent of calls from fixed lines in Bangalore are calls
-to other fixed lines in Bangalore."
-The percentage should have 2 decimal digits
-"""
+calls_from_area = callsFromAreaCode(calls, "(080)") # all 080 calls
+calls_to_area = callsToAreaCode(calls_from_area, "(080)") # 080 to 080 calls
+percentage = calculatePercentage(len(calls_from_area), len(calls_to_area))
+printPercentage(percentage)
