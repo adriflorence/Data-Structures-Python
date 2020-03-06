@@ -62,7 +62,7 @@ def callsToAreaCode(calls, code):
 
 # Calculates percentage with decimal digits
 def calculatePercentage(total, fraction):
-  percentage = (fraction / total) * 100
+  percentage = (fraction * 100.0) / total
   return round(percentage, 2)
 
 
