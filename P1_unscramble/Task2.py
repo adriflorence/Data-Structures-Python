@@ -8,14 +8,14 @@ with open('calls.csv', 'r') as f:
     calls = list(reader)
 
 
-def calculateLongestConverstation(calls):
+def calculateLongestConverstation(calls): # O(n)
     longest = calls[0]
     for call in calls:
         if(int(call[-1]) > int(longest[-1])):
             longest = call
     return longest
 
-def printLongestConversation(longest):
+def printLongestConversation(longest): # O(1)
     number = longest[0]
     duration = longest[-1]
     answer = "{} spent the longest time, {} seconds, on the phone during September 2016.".format(number, duration)

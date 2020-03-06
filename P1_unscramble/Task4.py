@@ -11,14 +11,14 @@ with open('calls.csv', 'r') as f:
 
 
 # Returns a list of calling telephone numbers with no duplicates
-def telephoneNumbers(calls, index):
+def telephoneNumbers(calls, index): # O(n)
     result = set()
     for call in calls:
         result.add(call[index])
     return result
 
 # Returns a list of calling telephone numbers with no duplicates
-def mobileNumbers(texts):
+def mobileNumbers(texts): # O(n)
     result = set()
     for text in texts:
         result.add(text[0])
@@ -27,7 +27,7 @@ def mobileNumbers(texts):
 
 
 # Returns a list of callers that never had incoming calls
-def noIncomingCalls(callers, callees):
+def noIncomingCalls(callers, callees): # O(n)
     result = set()
     for caller in callers:
         if(caller not in callees):
@@ -35,15 +35,14 @@ def noIncomingCalls(callers, callees):
     return result
 
 # Returns a list of caller numbers that does NOT appear in the texts.csv file
-def noTexts(callers, mobiles):
+def noTexts(callers, mobiles): # O(n)
     result = set()
-    # print(len(callers))
     for caller in callers:
         if(caller not in mobiles):
             result.add(caller)
     return result
 
-def printTelemarketers(telemarketers):
+def printTelemarketers(telemarketers): # O(n)
     for tm in telemarketers:
         print(tm)
 

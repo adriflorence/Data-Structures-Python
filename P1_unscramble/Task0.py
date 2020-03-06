@@ -7,7 +7,7 @@ with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
 
-def printRecordAtIndex(list, type, index):
+def printRecordAtIndex(list, type, index): # O(1)
 
     if(type == "text"):
         answer = "First record of texts, {} texts {} at time {}".format(list[index][0], list[index][1], list[index][2])
