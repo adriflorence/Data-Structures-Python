@@ -7,15 +7,16 @@ with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
 
-def countDifferentPhoneNumbers(records): # O(n)
+def count_different_phone_numbers(records): # O(n)
     numberSet = set()
     for record in records:
         numberSet.add(record[0])
         numberSet.add(record[1])
     return len(numberSet)
 
-def printAnswer(count): # O(1)
+def print_answer(count): # O(1)
     answer = "There are {} different telephone numbers in the records.".format(count)
 
-uniqueNumbers = countDifferentPhoneNumbers(calls) + countDifferentPhoneNumbers(texts)
-print(uniqueNumbers)
+records = calls + texts
+unique_numbers = count_different_phone_numbers(records)
+print_answer(unique_numbers)
