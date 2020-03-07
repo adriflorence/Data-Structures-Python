@@ -61,5 +61,5 @@ mobiles = list(mobileNumbers(texts))
 
 callers_without_incoming_calls = noIncomingCalls(callers, callees)
 callers_without_texts = noTexts(callers_without_incoming_calls, mobiles)
-telemarketers = sorted(list(callers_without_texts))
+telemarketers = sorted(list(callers_without_texts)) # O(NlogN) slowest function
 printTelemarketers(telemarketers)

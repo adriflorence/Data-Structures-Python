@@ -16,6 +16,7 @@ def count_different_phone_numbers(records): # O(n)
 
 def print_answer(count): # O(1)
     answer = "There are {} different telephone numbers in the records.".format(count)
+    print(answer)
 
 records = calls + texts
 unique_numbers = count_different_phone_numbers(records)

@@ -4,13 +4,13 @@ Task 0: Constant
 Runtime analysis is O(1) because the run time does not change with the function of the input.
 
 Task 1: Linear
-Runtime analysis is O(2n), or simplified to O(n), because we only have to iterate once on two collections.
+Runtime analysis is O(n) because we only have to iterate once on the records list.
 
 Task 2: Linear
-Runtime analysis is O(n) because we only have to iterate through the calls once to find the longest one.
+Runtime analysis is O(n) because we only have to iterate through the calls once.
 
 Task 3: Linear
-Runtime analysis simplifies to O(n), because iteration has O(n) complexity.
+Runtime analysis is O(NlogN), because sort is the slowest function that has O(NlogN) complexity.
 
 Task 4: Linear
-Runtime analysis simplifies to O(n), because each method has one non-nested for loop inside and the iteration has O(n) complexity.
+Runtime analysis is O(NlogN), because sort is the slowest function that has O(NlogN) complexity.
