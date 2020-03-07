@@ -11,38 +11,51 @@ with open('calls.csv', 'r') as f:
 
 # Returns a list of area codes that were called from a given area code
 # In lexicographic order with no duplicates
-def codesCalledFromCode(calls, code): # O(n)
+def codes_called_from_code(calls, code): # O(n)
   codes = set()
   for call in calls:
     if(code in call[0]):
-      if(isMobile(call[1])):
-        codes.add(getMobileCode(call[1]))
-      elif():
-        codes.add(getFixedCode(call[1]))
-
-  return sorted(list(codes))
+      if(is_mobile(call[1])):
+        codes.add(get_mobile_code(call[1]))
+      elif(is_telemarketer):
+        codes.add('140')
+      elif(is_fixed_line):
+        codes.add(get_fixed_code(call[1]))
+  return sorted(list(codes)) # O(NlogN)
    
 
-def isMobile(number): # O(1)
-  return " " in number
+def is_mobile(number): # O(1)
+  if((" " in number) and number.startwith('7') or number.startwith('8') or number.startwith('9')):
+    return True
+  return False
 
-def getMobileCode(number): # O(1)
+def get_mobile_code(number): # O(1)
   return number[:4]
 
-def getFixedCode(number): # O(1)
-  num = number.split(")")
-  return num[1:]
+def is_telemarketer(number): # O(1)
+  return number.startwith("140")
+
+# Fixed lines start with an area code enclosed in brackets.
+# The area codes vary in length but always begin with 0.
+def is_fixed_line(number): # O(1)
+  array_split = number.split(")")
+  if array_split[0].startwith("(0"):
+    return True
+  return False
+
+def get_fixed_code(number): # O(1)
+  array_split = number.split(")")
+  return array_split[0][1:]
 
 # Print area codes one per line
-def printCodes(codes): # O(1)
+def print_codes(codes): # O(1)
   print("The numbers called by people in Bangalore have codes:")
-  for code in codes:
-    print(code)
+  print('\n'.join(codes))
 
 
 # Part A:
-codes_list = codesCalledFromCode(calls, "(080)")
-printCodes(codes_list)
+codes_list = codes_called_from_code(calls, "(080)")
+print_codes(codes_list)
 
 ########################################
 
