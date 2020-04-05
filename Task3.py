@@ -17,15 +17,15 @@ def codes_called_from_code(calls, code): # O(n)
     if(code in call[0]):
       if(is_mobile(call[1])):
         codes.add(get_mobile_code(call[1]))
-      elif(is_telemarketer):
+      elif(is_telemarketer(call[1])):
         codes.add('140')
-      elif(is_fixed_line):
+      elif(is_fixed_line(call[1])):
         codes.add(get_fixed_code(call[1]))
   return sorted(list(codes)) # O(NlogN)
    
 
 def is_mobile(number): # O(1)
-  if((" " in number) and number.startwith('7') or number.startwith('8') or number.startwith('9')):
+  if((" " in number) and number.startswith(('7','8','9'))):
     return True
   return False
 
